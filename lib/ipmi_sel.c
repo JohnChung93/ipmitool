@@ -1375,7 +1375,7 @@ ipmi_get_event_desc(struct ipmi_intf * intf, struct sel_event_record * rec, char
 	     evt; evt = ipmi_get_next_event_sensor_type(evt))
 	{
 		if ((evt->offset == offset && evt->desc) &&
-			((evt->data == ALL_OFFSETS_SPECIFIED) ||
+			((evt->data == ALL_OFFSETS_SPECIFIED || (evt->data == rec->sel_type.standard_type.event_data[1])) ||
 			 ((rec->sel_type.standard_type.event_data[0] & DATA_BYTE2_SPECIFIED_MASK) &&
 			  (evt->data == rec->sel_type.standard_type.event_data[1]))))
 		{
